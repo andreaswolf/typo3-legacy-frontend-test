@@ -1,0 +1,39 @@
+{
+  "name": "andreaswolf/frontend-test",
+  "type": "typo3-cms-extension",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Andreas Wolf",
+      "email": "dev@a-w.io"
+    }
+  ],
+  "require": {
+    "fgtclb/http-api": "@dev",
+    "nimut/testing-framework": "^6.0",
+    "phpunit/phpunit": "^9.5",
+    "phpunit/php-text-template": "^1.2 || ^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AndreasWolf\\FrontendTest\\": "Classes/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AndreasWolf\\FrontendTest\\Tests\\": "Tests/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "frontend_test"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "typo3/cms-composer-installers": true,
+      "typo3/class-alias-loader": true
+    }
+  }
+}

@@ -1,0 +1,8 @@
+/vendor/
+/.Build/
+!/.Build/reports/
+bin
+composer.lock
+/.php-cs-fixer.cache
+
+.idea

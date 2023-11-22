@@ -1,0 +1,2 @@
+# cat=filepath//20; type=string; label=The template file to use for generating .htaccess files in the test systems
+htaccessTemplateFile =

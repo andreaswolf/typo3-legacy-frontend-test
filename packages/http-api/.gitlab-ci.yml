@@ -1,0 +1,105 @@
+---
+cache:
+  paths:
+  - "$CI_PROJECT_DIR/.cache/"
+
+### define stages ###
+stages:
+  - precheck
+  - test
+  - publish
+
+# limit pipeline creation:
+workflow:
+  rules:
+    # always run for branches that should trigger a deployment
+    - if: '$CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_REF_NAME == "development"'
+    # run if something happened in a merge request
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    # run the nightly builds
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    # run for manually triggered builds
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    # do not run for branches if there is a merge request
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+
+.base-job:
+  tags:
+    - docker
+  image: $DOCKER_IMAGE
+
+.version-matrix:
+  parallel:
+    matrix:
+      - TYPO3_VERSION: "11"
+        DOCKER_IMAGE: "containers.fgtclb.com/fes-cp/tools-php8.1:v3"
+
+check:php:style:
+  extends:
+    - .base-job
+    - .version-matrix
+  interruptible: true
+  stage: precheck
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+      - .config/php-cs-rules.php
+      - composer.json
+      - Classes/**/*.php
+      - Tests/**/*.php
+  before_script: []
+  script:
+    - ./.config/Scripts/composer-for-core-version.sh $TYPO3_VERSION
+    - composer cs:check
+
+analyze:php:
+  extends:
+    - .base-job
+    - .version-matrix
+  interruptible: true
+  stage: precheck
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+      - .config/phpstan/*
+      - .config/phpstan.neon
+      - .config/baseline*
+      - composer.json
+      - Classes/**/*.php
+      - Tests/**/*.php
+  before_script: []
+  script:
+    - ./.config/Scripts/composer-for-core-version.sh $TYPO3_VERSION
+    - composer analyze:php -- --no-progress
+
+test:php:unit:
+  extends:
+    - .base-job
+    - .version-matrix
+  interruptible: true
+  stage: test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - .config/phpunit*
+        - composer.json
+        - Classes/**/*.php
+        - Tests/**/*.php
+  script:
+    - ./.config/Scripts/composer-for-core-version.sh $TYPO3_VERSION
+    - composer test:php:unit
+  artifacts:
+    expire_in: 7 days
+    when: always
+    paths:
+      - .Build/reports/phpunit-unit.xml
+    reports:
+      junit:
+        - .Build/reports/phpunit-unit.xml
+
+satis:publish:
+  stage: publish
+  trigger:
+    project: fes/satis-repo
+    branch: master

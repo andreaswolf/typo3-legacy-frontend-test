@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export ENV_NAME=${CI_COMMIT_REF_SLUG:-fes-local}
+
+docker-compose \
+  -f docker-compose.yml \
+  exec \
+  --user "$(id -u):$(id -g)" \
+  -T \
+  php \
+  composer --ansi "$@"

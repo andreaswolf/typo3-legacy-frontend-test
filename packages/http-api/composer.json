@@ -1,0 +1,77 @@
+{
+	"name": "fgtclb/http-api",
+	"type": "typo3-cms-extension",
+	"description": "HTTP API to access data of the community portal",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "FGTCLB",
+			"email": "info@fgtclb.com"
+		}
+	],
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"optimize-autoloader": true,
+		"sort-packages": true,
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true,
+			"helhum/typo3-console-plugin": true
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "http_api",
+			"ignore-as-root": false,
+			"web-dir": ".Build/public",
+			"app-dir": ".Build"
+		}
+	},
+	"require": {
+		"php": "^8.1",
+		"opentracing/opentracing": "^1.0",
+		"psr/http-message": "^1.0",
+		"psr/http-server-handler": "^1.0",
+		"psr/http-server-middleware": "^1.0",
+		"symfony/config": "^5.4",
+		"symfony/psr-http-message-bridge": "^2.1",
+		"symfony/routing": "^5.4",
+		"typo3/cms-core": "^11.5",
+		"typo3/cms-frontend": "^11.5"
+	},
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^3.3",
+		"jangregor/phpstan-prophecy": "^1.0",
+		"nimut/testing-framework": "^6.0",
+		"phpspec/prophecy-phpunit": "^2.0",
+		"phpstan/phpstan": "^1.9",
+		"saschaegerer/phpstan-typo3": "^1.1",
+		"tideways/ext-tideways-stubs": "^5.5",
+		"typo3/coding-standards": "^0.6"
+	},
+	"autoload": {
+		"psr-4": {
+			"FGTCLB\\HttpApi\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"FGTCLB\\HttpApi\\Tests\\": "Tests"
+		}
+	},
+	"scripts": {
+		"prepare-extension-test-structure": [
+			"mkdir -p .Build/public/typo3conf/ext/",
+			"[ -L .Build/public/typo3conf/ext/http_api ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/http_api",
+			"Nimut\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+		],
+		"analyze:php": "phpstan analyse --ansi --no-progress --memory-limit=384M --configuration=./.config/phpstan.neon",
+		"cs:check": "php-cs-fixer fix --config ./.config/php-cs-rules.php --ansi --diff --verbose --dry-run",
+		"cs:fix": "php-cs-fixer fix --config ./.config/php-cs-rules.php --ansi",
+		"test:php:unit": "phpunit --colors=always --configuration ./.config/phpunit-unit.xml",
+		"test:php:functional": "phpunit --colors=always --configuration ./.config/phpunit-functional.xml --testsuite 'Functional tests'",
+		"post-autoload-dump": [
+			"@prepare-extension-test-structure"
+		]
+	}
+}

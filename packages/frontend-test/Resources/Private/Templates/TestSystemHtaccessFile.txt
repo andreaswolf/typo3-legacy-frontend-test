@@ -1,0 +1,26 @@
+# .htaccess file for test systems in typo3temp/var/tests/.
+# Works together with an AliasMatch in the Apache vHost configuration that maps /_ft-xxxx/ to /typo3temp/var/tests/functional-xxxx/
+# This piece is responsible for the general URL rewriting like in the regular TYPO3 URL Rewriting, and additionally for
+# ensuring that TYPO3 actually uses /_ft-xxxx/ as its path.
+# NOTE that this also requires a Core patch as of TYPO3 9.5.31 to fix the REQUEST_URI variable in PSR-7 request objects
+
+RewriteCond $0#%{REQUEST_URI} ([^#]*)#(/_ft-([a-z0-9]+)/\1)$
+RewriteRule ^.*$ - [E=TESTSYS:%3,E=REDIRECT_TESTSYS:%3,E=API_REQUEST_URI:%2,E=REDIRECT_API_REQUEST_URI:%2]
+
+# API_REQUEST_URI contains the original request URI w/o the /_ft-xxxxx/ prefix
+# it is later available in TYPO3 as REDIRECT_API_REQUEST_URI (because we have an internal redirect happening here if we use a speaking URL)
+# if no speaking URL is used, the E=REDIRECT_API_REQUEST_URI above makes sure we still have it available under the same name
+# the request URI override must be configured in TYPO3_CONF_VARS[SYS][requestURIvar] as '_SERVER|REDIRECT_API_REQUEST_URI' to work
+
+# both variables must be set so we use …/typo3temp/var for caches etc, not /var of the main installation
+SetEnv TYPO3_PATH_ROOT {testSystemPath}
+SetEnv TYPO3_PATH_APP {testSystemPath}
+
+SetEnv TYPO3_CONTEXT Testing
+
+# If the file/symlink/directory does not exist => Redirect to index.php.
+# For httpd.conf, you need to prefix each '%{REQUEST_FILENAME}' with '%{DOCUMENT_ROOT}'.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^.*$ index.php [QSA,L]

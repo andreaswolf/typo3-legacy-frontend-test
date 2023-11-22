@@ -1,0 +1,91 @@
+<T3DataSet>
+  <pages>
+    <uid>1</uid>
+    <pid>0</pid>
+    <is_siteroot>1</is_siteroot>
+    <title>Site root page</title>
+    <slug>root</slug>
+  </pages>
+  <pages>
+    <uid>2</uid>
+    <pid>1</pid>
+    <title>Gruppen</title>
+  </pages>
+  <pages>
+    <uid>10</uid>
+    <pid>2</pid>
+    <doktype>145</doktype>
+    <title>Test-Raum</title>
+  </pages>
+  <pages>
+    <uid>11</uid>
+    <pid>10</pid>
+    <doktype>156</doktype>
+    <title>Über uns</title>
+  </pages>
+  <pages>
+    <uid>12</uid>
+    <pid>10</pid>
+    <doktype>163</doktype>
+    <title>News</title>
+  </pages>
+  <pages>
+    <uid>20</uid>
+    <pid>12</pid>
+    <doktype>164</doktype>
+    <title>Eine News-Meldung</title>
+  </pages>
+
+  <fe_groups>
+    <uid>1</uid>
+    <pid>2</pid>
+    <title>default</title>
+  </fe_groups>
+
+  <fe_groups>
+    <uid>10</uid>
+    <pid>10</pid>
+    <title>Test-Raum Members</title>
+    <tx_rooms_role>1</tx_rooms_role>
+  </fe_groups>
+  <fe_groups>
+    <uid>11</uid>
+    <pid>10</pid>
+    <title>Test-Raum Moderatoren</title>
+    <tx_rooms_role>50</tx_rooms_role>
+  </fe_groups>
+  <fe_groups>
+    <uid>12</uid>
+    <pid>10</pid>
+    <title>Test-Raum Admins</title>
+    <tx_rooms_role>100</tx_rooms_role>
+  </fe_groups>
+
+  <sys_template>
+    <uid>1</uid>
+    <pid>1</pid>
+    <root>1</root>
+    <config><![CDATA[
+page = PAGE
+page.config.disableAllHeaderCode = 1
+page.10 = TEXT
+page.10.value = Hello World
+]]></config>
+  </sys_template>
+  <sys_template>
+    <uid>2</uid>
+    <pid>2</pid>
+    <root>1</root>
+    <config><![CDATA[
+page = PAGE
+page.config.disableAllHeaderCode = 1
+page.10 = TEXT
+page.10.data = context:frontend.user:username
+]]></config>
+  </sys_template>
+  <sys_domain>
+    <uid>1</uid>
+    <pid>1</pid>
+    <domainName>fes-local.dev.fgtclb.com</domainName>
+  </sys_domain>
+</T3DataSet>

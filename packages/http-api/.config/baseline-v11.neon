@@ -1,0 +1,56 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method FGTCLB\\\\HttpApi\\\\Http\\\\ApiParameters\\:\\:__construct\\(\\) has parameter \\$routeParameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/Http/ApiParameters.php
+
+		-
+			message: "#^Property FGTCLB\\\\HttpApi\\\\Http\\\\ApiParameters\\:\\:\\$parameters type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/Http/ApiParameters.php
+
+		-
+			message: "#^Method FGTCLB\\\\HttpApi\\\\Http\\\\ApiResponse\\:\\:__construct\\(\\) has parameter \\$arguments with no type specified\\.$#"
+			count: 1
+			path: ../Classes/Http/ApiResponse.php
+
+		-
+			message: "#^Method FGTCLB\\\\HttpApi\\\\Http\\\\UndefinedApiParameterException\\:\\:__construct\\(\\) has parameter \\$arguments with no type specified\\.$#"
+			count: 1
+			path: ../Classes/Http/UndefinedApiParameterException.php
+
+		-
+			message: "#^Method FGTCLB\\\\HttpApi\\\\Http\\\\UndefinedApiParameterException\\:\\:forParameter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: ../Classes/Http/UndefinedApiParameterException.php
+
+		-
+			message: "#^There is no request attribute \"api\\.controller\" configured so we can't figure out the exact type to return when calling Psr\\\\Http\\\\Message\\\\ServerRequestInterface\\:\\:getAttribute$#"
+			count: 1
+			path: ../Classes/Middleware/ApiAccessGuard.php
+
+		-
+			message: "#^Cannot call method setTag\\(\\) on OpenTracing\\\\Span\\|null\\.$#"
+			count: 2
+			path: ../Classes/Middleware/ApiRequestResolver.php
+
+		-
+			message: "#^There is no request attribute \"api\\.controller\" configured so we can't figure out the exact type to return when calling Psr\\\\Http\\\\Message\\\\ServerRequestInterface\\:\\:getAttribute$#"
+			count: 1
+			path: ../Classes/Middleware/ApiRequestResolver.php
+
+		-
+			message: "#^Unable to resolve the template type T in call to method static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\GeneralUtility\\:\\:makeInstance\\(\\)$#"
+			count: 1
+			path: ../Classes/Middleware/ApiRequestResolver.php
+
+		-
+			message: "#^There is no request attribute \"api\\.controller\" configured so we can't figure out the exact type to return when calling Psr\\\\Http\\\\Message\\\\ServerRequestInterface\\:\\:getAttribute$#"
+			count: 1
+			path: ../Classes/Middleware/TypoScriptFrontendSetup.php
+
+		-
+			message: "#^There is no request attribute \"noCache\" configured so we can't figure out the exact type to return when calling Psr\\\\Http\\\\Message\\\\ServerRequestInterface\\:\\:getAttribute$#"
+			count: 1
+			path: ../Classes/Middleware/TypoScriptFrontendSetup.php

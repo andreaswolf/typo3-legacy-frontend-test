@@ -1,0 +1,14 @@
+includes:
+  - phpstan/typo3-version-specific-config.php
+  - ../.Build/vendor/saschaegerer/phpstan-typo3/extension.neon
+  - ../.Build/vendor/jangregor/phpstan-prophecy/extension.neon
+
+parameters:
+  level: 8
+  paths:
+    - ../Classes
+  excludePaths:
+    - ../.Build
+  inferPrivatePropertyTypeFromConstructor: true
+
+  ignoreErrors: []
