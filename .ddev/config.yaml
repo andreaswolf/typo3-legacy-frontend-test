@@ -17,6 +17,10 @@ use_dns_when_possible: true
 composer_version: "2"
 web_environment:
     - TYPO3_CONTEXT=Development
+    - typo3DatabaseName=db
+    - typo3DatabaseHost=db
+    - typo3DatabaseUsername=db
+    - typo3DatabasePassword=db
 nodejs_version: "16"
 hooks:
     post-start:
