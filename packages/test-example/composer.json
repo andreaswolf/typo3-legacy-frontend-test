@@ -1,0 +1,21 @@
+{
+	"name": "andreaswolf/test-example",
+	"type": "typo3-cms-extension",
+	"description": "Test example extension",
+	"license": "GPL-2.0-or-later",
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "test_example"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"AndreasWolf\\TestExample\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"AndreasWolf\\TestExample\\Tests\\": "Tests"
+		}
+	}
+}

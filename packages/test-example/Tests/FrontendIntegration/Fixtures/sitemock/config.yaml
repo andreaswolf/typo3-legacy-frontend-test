@@ -1,0 +1,33 @@
+imports: []
+
+rootPageId: '{rootPageId}'
+base: '{baseUrl}'
+routes: {  }
+
+languages:
+  -
+    title: German
+    enabled: true
+    languageId: '0'
+    base: /
+    typo3Language: de
+    locale: de_DE.UTF-8
+    iso-639-1: de
+    navigationTitle: ''
+    hreflang: de
+    direction: ''
+    flag: global
+  -
+    title: English
+    enabled: true
+    languageId: '1'
+    base: /en/
+    typo3Language: default
+    locale: en_EN.UTF-8
+    iso-639-1: en
+    navigationTitle: ''
+    hreflang: en-GB
+    direction: ''
+    fallbackType: strict
+    flag: en-us-gb
+    fallbacks: ''

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a6e44db2338b6e6e4e0bbe1c34a38f9",
+    "content-hash": "d3881d12644fe59722c3fb429fd0b8b0",
     "packages": [
         {
             "name": "andreaswolf/frontend-test",
@@ -42,6 +42,38 @@
                     "email": "dev@a-w.io"
                 }
             ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "andreaswolf/test-example",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./packages/test-example",
+                "reference": "cdbee60f6885b4a6231f067895de533a74153e82"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "test_example"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AndreasWolf\\TestExample\\": "Classes"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "AndreasWolf\\TestExample\\Tests\\": "Tests"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Test example extension",
             "transport-options": {
                 "relative": true
             }
@@ -8294,6 +8326,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "andreaswolf/frontend-test": 20,
+        "andreaswolf/test-example": 20,
         "fgtclb/http-api": 20
     },
     "prefer-stable": false,

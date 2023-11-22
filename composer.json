@@ -17,6 +17,7 @@
     },
     "require": {
         "andreaswolf/frontend-test": "@dev",
+        "andreaswolf/test-example": "@dev",
         "fgtclb/http-api": "@dev",
         "helhum/typo3-console": "^7.1",
         "typo3/cms-lowlevel": "^11.5",
@@ -31,5 +32,10 @@
             "typo3/cms-composer-installers": true
         },
         "sort-packages": true
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AndreasWolf\\TestExample\\Tests\\": "packages/test-example/Tests/"
+        }
     }
 }

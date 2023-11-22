@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<T3DataSet>
+    <pages>
+        <uid>1</uid>
+        <pid>0</pid>
+        <is_siteroot>1</is_siteroot>
+        <title>Site root</title>
+        <doktype>1</doktype>
+        <slug>/</slug>
+    </pages>
+
+    <sys_template>
+        <uid>1</uid>
+        <pid>1</pid>
+        <root>1</root>
+        <config><![CDATA[
+page = PAGE
+page.10 = TEXT
+page.10.value = Hello World
+]]></config>
+    </sys_template>
+</T3DataSet>
