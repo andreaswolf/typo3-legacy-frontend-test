@@ -1,0 +1,35 @@
+{
+    "name": "andreaswolf/typo3-frontend-test-example",
+    "description": "Example project showcasing a frontend test with Cypress",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io"
+        }
+    ],
+    "repositories": {
+        "local": {
+            "type": "path",
+            "url": "./packages/*"
+        }
+    },
+    "require": {
+        "andreaswolf/frontend-test": "@dev",
+        "fgtclb/http-api": "@dev",
+        "helhum/typo3-console": "^7.1",
+        "typo3/cms-lowlevel": "^11.5",
+        "typo3/minimal": "^11.5"
+    },
+    "require-dev": {
+        "nimut/testing-framework": "^6.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        },
+        "sort-packages": true
+    }
+}
